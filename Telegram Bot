@@ -1,0 +1,23 @@
+#include <SoftwareSerial.h>
+ 
+#define REL_PIN 12
+ 
+SoftwareSerial esp(4, 5);
+ 
+void setup() {
+  esp.begin(9600);
+  pinMode(REL_PIN, OUTPUT);
+}
+ 
+void loop() {
+  String command = esp.readStringUntil('\n');
+  command.trim();
+ 
+  if (command == "turnOn") {
+    digitalWrite(REL_PIN, HIGH);
+  }
+ 
+  if (command == "turnOff") {
+    digitalWrite(REL_PIN, LOW);
+  }
+}
